@@ -1,1 +1,5 @@
-pi4
+[pi]
+albvar@pi4
+
+[ubuntu]
+media@media
