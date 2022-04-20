@@ -3,3 +3,14 @@ pi4
 
 [ubuntu]
 media
+
+[winhost]
+DESKTOP-6IDPCAF
+
+[winhost:vars]
+ansible_user="ansible"
+ansible_password="POpqMQoJWTiDpEW"
+ansible_port="5986"
+ansible_connection="winrm"
+ansible_winrm_transport="basic"
+ansible_winrm_server_cert_validation=ignore
