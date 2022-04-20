@@ -22,6 +22,20 @@ cd ansible-homelab
 ansible all -m ping
 ```
 
+## Running ansible playbooks
+
+```bash
+ansible-playbook --ask-become-pass bootstrap.yml
+# bootstrap new computer in inventory user@dnsname
+# modify ansible.cfg remove remote_user & private_key file
+```
+
+## Running ansible playbooks on winhost
+
+```bash
+ansible winhost -m win_ping -v
+```
+
 ## Using git
 
 ```bash
@@ -35,5 +49,12 @@ git push
 
 ```bash
 cat /etc/os-release
-tail -f cat /var/log/auth.log # troubleshoot shh key issues on target host
+tail -f cat /var/log/auth.log # troubleshoot ssh key issues on target host
+```
+
+## Dependencies
+
+```bash
+ansible-galaxy collection install ansible.windows
+ansible-galaxy collection install community.windows
 ```

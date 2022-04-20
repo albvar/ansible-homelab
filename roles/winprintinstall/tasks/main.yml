@@ -1,0 +1,23 @@
+- name: Copy Brother5430 zip file
+  ansible.windows.win_copy:
+    src: Brother5430D.zip
+    dest: C:\Temp\
+
+- name: Extracts Brother 5430 zip file
+  community.windows.win_unzip:
+    src: C:\Temp\Brother5430D.zip
+    dest: C:\Temp\Brother5430D
+    delete_archive: yes
+
+- name: Copy Printer Install File
+  ansible.windows.win_copy:
+    src: AddPrinter.ps1
+    dest: C:\Temp\
+
+- name: Run a cmd command
+  win_command: cmd.exe /c powershell -File C:\temp\AddPrinter.ps1
+
+- name: Restart a service
+  win_service:
+    name: spooler
+    state: restarted

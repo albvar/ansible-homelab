@@ -1,0 +1,21 @@
+---
+ 
+ - hosts: [ubuntu, pi]
+   become: true
+   pre_tasks:
+ 
+   - name: update repository index (Ubuntu)
+     tags: always
+     apt:
+       update_cache: yes
+     changed_when: false
+     when: ansible_distribution == "Ubuntu"
+  
+ - hosts: [ubuntu, pi]
+   become: true
+   roles:
+     - base
+
+ - hosts: winhost
+   roles:
+     - winprintinstall
