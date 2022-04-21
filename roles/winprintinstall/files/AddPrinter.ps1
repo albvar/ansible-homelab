@@ -1,6 +1,24 @@
-pnputil.exe /a "C:\temp\Brother5430D\BROHLA8A.INF"
-try { Add-PrinterDriver -Name 'Brother HL-5340D series' -ErrorAction Stop }
-catch { Add-PrinterDriver -Name 'Brother HL-5340D series' -ErrorAction Stop  -InfPath 'C:\temp\Brother5430D\BROHLA8A.INF' }
+$printerDriverName = 'Brother HL-5340D series'
+$infPath = 'C:\temp\Brother5430D\BROHLA8A.INF'
+$printerName = '\\http://pi4:631\Brother_HL-5340D_series'
+$printerPortName = 'http://pi4:631/printers/Brother_HL-5340D_series'
 
-Add-Printer -Name '\\http://pi4:631\Brother_HL-5340D_series' -PortName 'http://pi4:631/printers/Brother_HL-5340D_series' -DriverName 'Brother HL-5340D series' 
-Get-Service spool* | Restart-Service
+try {
+    $printer = Get-Printer -Name $printerName -ErrorAction Stop
+}
+catch {
+    $msg = ('Printer did not exist')
+    Throw $msg
+}
+
+if ($printer) {
+    $Ansible.Changed = $false
+}
+else {
+    pnputil.exe /a $infPath
+    try { Add-PrinterDriver -Name $printerDriverName -ErrorAction Stop }
+    catch { Add-PrinterDriver -Name $printerDriverName  -ErrorAction Stop  -InfPath $infPath }
+
+    Add-Printer -Name $printerName -PortName $printerPortName -DriverName $printerDriverName
+    $Ansible.Changed = $true
+}
