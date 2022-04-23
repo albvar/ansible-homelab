@@ -16,6 +16,6 @@
    roles:
      - base
 
- - hosts: winhost
+ - hosts: win
    roles:
      - winprintinstall

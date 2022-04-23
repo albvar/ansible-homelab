@@ -58,3 +58,11 @@ tail -f cat /var/log/auth.log # troubleshoot ssh key issues on target host
 ansible-galaxy collection install ansible.windows
 ansible-galaxy collection install community.windows
 ```
+
+## Ansible vault
+
+```bash
+ansible-vault encrypt --vault-password-file ~/.vault_key winsecret.txt
+ansible-vault edit --vault-password-file ~/.vault_key file.txt
+ansible-vault view --vault-password-file ~/.vault_key group_vars/win/vault
+```

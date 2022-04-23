@@ -1,0 +1,14 @@
+---
+win:
+  hosts:
+    DESKTOP-6IDPCAF:
+    DESKTOP-1D7UGRB:
+    DESKTOP-SSR199V:
+
+pi:
+  hosts:
+    pi4:
+
+ubuntu:
+  hosts:
+    media:
