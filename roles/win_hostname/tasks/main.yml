@@ -1,0 +1,9 @@
+- name: Change hostname for Josefina
+  ansible.windows.win_hostname:
+    name: JOSEFINA-LAPTOP
+  register: res
+  when: "{{ ansible_hostname == 'DESKTOP-SSR199V'}}"
+
+- name: Reboot
+  ansible.windows.win_reboot:
+  when: res.changed == true

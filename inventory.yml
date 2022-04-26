@@ -3,11 +3,12 @@ win:
   hosts:
     DESKTOP-6IDPCAF:
     DESKTOP-1D7UGRB:
-    DESKTOP-SSR199V:
+    JOSEFINA-LAPTOP:
 
 pi:
   hosts:
     pi4:
+    mk3:
 
 ubuntu:
   hosts:

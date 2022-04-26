@@ -1,0 +1,9 @@
+- name: Copy docker compose
+  fetch:
+    src: /home/media/.docker/compose/docker-compose.yml
+    dest: /home/albvar/ansible-homelab/roles/fetch/files
+
+- name: Copy fstab
+  fetch:
+    src: /etc/fstab
+    dest: /home/albvar/ansible-homelab/roles/fetch/files

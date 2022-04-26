@@ -25,7 +25,7 @@ ansible all -m ping
 ## Running ansible playbooks
 
 ```bash
-ansible-playbook --ask-become-pass bootstrap.yml
+ansible-playbook --ask-become-pass bootstrap.yml --limit 'pi@mk3' --ask-pass
 # bootstrap new computer in inventory user@dnsname
 # modify ansible.cfg remove remote_user & private_key file
 ```
@@ -66,3 +66,15 @@ ansible-vault encrypt --vault-password-file ~/.vault_key winsecret.txt
 ansible-vault edit --vault-password-file ~/.vault_key file.txt
 ansible-vault view --vault-password-file ~/.vault_key group_vars/win/vault
 ```
+
+
+## DONE
+
+- Figure out how to stop prompting for --vault-password-file
+- Figure out how to manage network profiles for all users to switch to private instead of public
+
+## TODO
+
+- Figure out how to configure pull
+- Figure out if there is a way to schedule reboots of network device with ssh enabled
+

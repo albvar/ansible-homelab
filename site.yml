@@ -9,13 +9,33 @@
      apt:
        update_cache: yes
      changed_when: false
-     when: ansible_distribution == "Ubuntu"
-  
+     when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+   -  debug:
+       msg: "{{ ansible_distribution }}"    
+
+   - name: Upgrade the OS (apt-get dist-upgrade)
+     apt:
+       upgrade: dist
+     when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+
+   - name: Update all packages to their latest version
+     apt:
+       name: "*"
+       state: latest
+     when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+
  - hosts: [ubuntu, pi]
    become: true
    roles:
      - base
 
+ - hosts: ubuntu:media
+   become: true
+   roles:
+     - fetch
+
  - hosts: win
    roles:
      - winprintinstall
+     - win_hostname
+     - win_powershell
